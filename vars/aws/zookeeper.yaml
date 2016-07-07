@@ -1,0 +1,38 @@
+env:
+  name: "zookeeper"
+  aws:
+    region: us-west-2
+    security_group:
+      name: zookeeper_cluster
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 2181
+          to_port: 2181
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 2888
+          to_port: 2888
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 3888
+          to_port: 3888
+          cidr_ip: 0.0.0.0/0
+
+      rules_egress:
+        - proto: all
+          cidr_ip: "0.0.0.0/0"
+
+    instances:
+      number: "{{ lookup('env','AWS_INSTANCE_NUMBER') if lookup('env','AWS_INSTANCE_NUMBER') != '' else 1 }}"
+      name: "zookeeper_app"
+      type: t2.medium
+      # Termination by this criteris
+      inventory_group: "{{ lookup('env','AWS_INVENTORY_GROUP') if lookup('env','AWS_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
+      security_groups: ["zookeeper_cluster"]
+
+    key:
+      name: zookeeper_cluster

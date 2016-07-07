@@ -1,0 +1,17 @@
+# Directory for ansible galaxy roles
+galaxy_roles
+
+# Idea directory
+.idea
+
+# Servers private keys
+keys
+
+# Ansible retry files
+*.retry
+
+# Ansible debug playbook
+aws_get_debug_info.yaml
+
+aws.yaml.backup
+aws.yaml

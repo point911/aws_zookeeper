@@ -1,0 +1,7 @@
+---
+
+# These playbooks were used as a templates but there are some misconfigurations
+
+- name: sansible.users_and_groups
+  src: https://github.com/sansible/users_and_groups
+  version: origin/master

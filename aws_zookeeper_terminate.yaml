@@ -1,0 +1,13 @@
+- name: Terminate zookeeper environment
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars_files:
+    - vars/aws/zookeeper.yaml
+    - vars/aws/aws.yaml
+
+  tasks:
+    - include: tasks/aws/instances_terminate.yaml
+    - include: tasks/aws/securitygroup_terminate.yaml
+    - include: tasks/aws/keypair_terminate.yaml

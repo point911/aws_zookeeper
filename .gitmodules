@@ -1,0 +1,9 @@
+[submodule "roles/community"]
+	path = roles/community
+	url = https://github.com/point911/ansible_roles
+[submodule "tasks/aws"]
+	path = tasks/aws
+	url = https://github.com/point911/aws_ansible_tasks
+[submodule "inventory/aws"]
+	path = inventory/aws
+	url = https://github.com/point911/aws_ansible_inventory

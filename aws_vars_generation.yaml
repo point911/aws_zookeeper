@@ -1,0 +1,12 @@
+---
+
+- name: Generate aws vars file
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars_files:
+    - vars/aws/standalone.yaml
+
+  roles:
+    - name: community/aws_config

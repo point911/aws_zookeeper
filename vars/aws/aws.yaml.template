@@ -1,0 +1,30 @@
+aws:
+  security_groups:
+    - name: "{{ env.aws.security_group.name }}"
+      rules:
+{% for rule in env.aws.security_group.rules %}
+        - proto: {{ rule.proto }}
+          from_port: {{ rule.from_port }}
+          to_port: {{ rule.to_port }}
+          cidr_ip: {{ rule.cidr_ip }}
+{% endfor %}
+      rules_egress:
+{% for rule in env.aws.security_group.rules_egress %}
+        - proto: {{ rule.proto }}
+          cidr_ip: {{ rule.cidr_ip }}
+{% endfor %}
+
+      description: This is a security group for {{ env.name }} training instances
+
+  instances:
+{% for num in range(env.aws.instances.number|int) %}
+
+    - name: "{{ env.aws.instances.name + num|string }}"
+      inventory_group: "{{ env.aws.instances.inventory_group }}"
+      instance_type: "{{ env.aws.instances.type }}"
+      security_group: "{{ env.aws.instances.security_groups }}"
+{% endfor %}
+
+  keypair: "{{ env.aws.key.name }}"
+
+  region: "{{ env.aws.region }}"
