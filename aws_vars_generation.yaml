@@ -6,7 +6,7 @@
   connection: local
 
   vars_files:
-    - vars/aws/standalone.yaml
+    - vars/aws/zookeeper.yaml
 
   roles:
     - name: community/aws_config
