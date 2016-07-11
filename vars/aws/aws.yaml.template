@@ -29,9 +29,3 @@ aws:
 
   region: "{{ env.aws.region }}"
 
-
-zookeeper:
-  hosts:
-{% for srv in zookeeper_server_list %}
-    - {{ srv }}
-{% endfor %}
