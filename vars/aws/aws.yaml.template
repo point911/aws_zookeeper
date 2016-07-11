@@ -18,11 +18,11 @@ aws:
 
   instances:
 {% for num in range(env.aws.instances.number|int) %}
-
     - name: "{{ env.aws.instances.name + num|string }}"
       inventory_group: "{{ env.aws.instances.inventory_group }}"
       instance_type: "{{ env.aws.instances.type }}"
       security_group: "{{ env.aws.instances.security_groups }}"
+
 {% endfor %}
 
   keypair: "{{ env.aws.key.name }}"

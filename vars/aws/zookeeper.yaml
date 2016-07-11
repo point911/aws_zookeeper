@@ -36,6 +36,3 @@ env:
 
     key:
       name: zookeeper_cluster
-
-
-zookeeper_server_list: "{{ groups['security_group_'+env.aws.security_group.name]|map('extract', hostvars, 'ec2_private_ip_address')|list }}"

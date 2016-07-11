@@ -27,6 +27,7 @@
     - vars/ssh_users/ssh_users.yaml
     - vars/aws/zookeeper.yaml
     - vars/aws/aws.yaml
+    - vars/deploy/deploy.yaml
 
   pre_tasks:
     - name: Update apt
@@ -41,6 +42,3 @@
     - name: community/ssh
     - name: community/java
     - name: community/zookeeper
-
-  post_tasks:
-    - include: tasks/aws/eject_public_key.yaml

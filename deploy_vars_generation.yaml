@@ -1,0 +1,13 @@
+---
+
+- name: Generate deploy vars file
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars_files:
+    - vars/aws/zookeeper.yaml
+    - vars/deploy/zookeeper.yaml
+
+  roles:
+    - name: community/deploy_config
