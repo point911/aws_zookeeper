@@ -1,0 +1,43 @@
+aws:
+  security_groups:
+    - name: "zookeeper_cluster"
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 2181
+          to_port: 2181
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 2888
+          to_port: 2888
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 3888
+          to_port: 3888
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+
+      description: This is a security group for zookeeper training instances
+
+  instances:
+
+    - name: "zookeeper_app0"
+      inventory_group: "zookeer_cluster"
+      instance_type: "t2.medium"
+      security_group: "[u'zookeeper_cluster']"
+
+  keypair: "zookeeper_cluster"
+
+  region: "us-west-2"
+
+
+zookeeper:
+  hosts:
+    - 172.31.28.209
+    - 172.31.25.214
+    - 172.31.20.16

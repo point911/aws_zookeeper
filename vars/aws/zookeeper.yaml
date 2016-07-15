@@ -26,13 +26,15 @@ env:
         - proto: all
           cidr_ip: "0.0.0.0/0"
 
-    instances:
-      number: "{{ lookup('env','AWS_INSTANCE_NUMBER') if lookup('env','AWS_INSTANCE_NUMBER') != '' else 1 }}"
-      name: "zookeeper_app"
-      type: t2.medium
-      # Termination by this criteris
-      inventory_group: "{{ lookup('env','AWS_INVENTORY_GROUP') if lookup('env','AWS_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
-      security_groups: ["zookeeper_cluster"]
+    groups:
+      - node_type: zookeeper_clusteer
+        instances:
+          number: "{{ lookup('env','AWS_INSTANCE_NUMBER') if lookup('env','AWS_INSTANCE_NUMBER') != '' else 1 }}"
+          name: "zookeeper_app"
+          type: t2.medium
+          # Termination by this criteris
+          inventory_group: "{{ lookup('env','AWS_INVENTORY_GROUP') if lookup('env','AWS_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
+          security_groups: ["zookeeper_cluster"]
 
     key:
       name: zookeeper_cluster

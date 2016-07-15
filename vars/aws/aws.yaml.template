@@ -17,15 +17,16 @@ aws:
       description: This is a security group for {{ env.name }} training instances
 
   instances:
-{% for num in range(env.aws.instances.number|int) %}
-    - name: "{{ env.aws.instances.name + num|string }}"
-      inventory_group: "{{ env.aws.instances.inventory_group }}"
-      instance_type: "{{ env.aws.instances.type }}"
-      security_group: "{{ env.aws.instances.security_groups }}"
+{% for group in env.aws.groups %}
+{% for num in range(group.instances.number|int) %}
+    - name: "{{ group.instances.name + num|string }}"
+      inventory_group: "{{ group.instances.inventory_group }}"
+      instance_type: "{{ group.instances.type }}"
+      security_group: "{{ group.instances.security_groups }}"
 
+{% endfor %}
 {% endfor %}
 
   keypair: "{{ env.aws.key.name }}"
 
   region: "{{ env.aws.region }}"
-
