@@ -8,6 +8,7 @@
   vars_files:
     - vars/aws/zookeeper.yaml
     - vars/deploy/zookeeper.yaml
+    - vars/aws/aws.yaml
 
   roles:
     - name: community/deploy_config
