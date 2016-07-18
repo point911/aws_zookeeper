@@ -1,6 +1,6 @@
 - name: Wait for become yes
   hosts:
-    - tag_inventory_group_{{ env.aws.instances.inventory_group }}
+    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
   connection: ssh
   gather_facts: yes
   remote_user: ubuntu
@@ -15,30 +15,30 @@
         - 1
         - 15
 
-#- name: Install zookeeper
-#  hosts:
-#    - tag_inventory_group_{{ env.aws.instances.inventory_group }}
-#  connection: ssh
-#  gather_facts: yes
-#
-#  remote_user: ubuntu
-#
-#  vars_files:
-#    - vars/ssh_users/ssh_users.yaml
-#    - vars/aws/zookeeper.yaml
-#    - vars/aws/aws.yaml
-#    - vars/deploy/deploy.yaml
-#
-#  pre_tasks:
-#    - name: Update apt
-#      become: yes
-#      apt:
-#        cache_valid_time: 1800
-#        update_cache: yes
-#      tags:
-#        - build
-#
-#  roles:
-#    - name: community/ssh
-#    - name: community/java
-#    - name: community/zookeeper
+- name: Install zookeeper
+  hosts:
+    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
+  connection: ssh
+  gather_facts: yes
+
+  remote_user: ubuntu
+
+  vars_files:
+    - vars/ssh_users/ssh_users.yaml
+    - vars/aws/zookeeper.yaml
+    - vars/aws/aws.yaml
+    - vars/deploy/deploy.yaml
+
+  pre_tasks:
+    - name: Update apt
+      become: yes
+      apt:
+        cache_valid_time: 1800
+        update_cache: yes
+      tags:
+        - build
+
+  roles:
+    - name: community/ssh
+    - name: community/java
+    - name: community/zookeeper

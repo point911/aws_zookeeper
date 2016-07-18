@@ -1,3 +1,6 @@
+inventory_groups:
+  zookeeper_inventory_group: "{{ lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') if lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
+
 env:
   name: "zookeeper"
   aws:
@@ -33,7 +36,7 @@ env:
           name: "zookeeper_app"
           type: t2.medium
           # Termination by this criteris
-          inventory_group: "{{ lookup('env','AWS_INVENTORY_GROUP') if lookup('env','AWS_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
+          inventory_group: "{{ inventory_groups.zookeeper_inventory_group }}"
           security_groups: ["zookeeper_cluster"]
 
     key:
