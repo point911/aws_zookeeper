@@ -1,5 +1,5 @@
 inventory_groups:
-  zookeeper_inventory_group: "{{ lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') if lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') != '' else 'zookeer_cluster' }}"
+  zookeeper_inventory_group: "{{ lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') if lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') != '' else 'zookeeper_cluster' }}"
 
 env:
   name: "zookeeper"
