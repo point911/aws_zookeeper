@@ -1,12 +1,12 @@
 inventory_groups:
-  zookeeper_inventory_group: "{{ lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') if lookup('env','AWS_ZOOKEEPER_INVENTORY_GROUP') != '' else 'zookeeper_cluster' }}"
+  zookeeper_inventory_group: "{{ project_name }}"
 
 env:
-  name: "zookeeper"
+  name: "{{ project_name }}"
   aws:
-    region: us-west-2
+    region: us-east-1
     security_group:
-      name: zookeeper_cluster
+      name: "{{ project_name }}"
       rules:
         - proto: tcp
           from_port: 22
@@ -30,14 +30,15 @@ env:
           cidr_ip: "0.0.0.0/0"
 
     groups:
-      - node_type: zookeeper_clusteer
+      - node_type: "{{ project_name }}"
         instances:
           number: "{{ lookup('env','AWS_INSTANCE_NUMBER') if lookup('env','AWS_INSTANCE_NUMBER') != '' else 1 }}"
-          name: "zookeeper_app"
+          name: "{{ project_name }}"
           type: t2.medium
           # Termination by this criteris
           inventory_group: "{{ inventory_groups.zookeeper_inventory_group }}"
-          security_groups: ["zookeeper_cluster"]
+          security_groups: ["{{ project_name }}"]
+          vpc_subnet_id: subnet-79535f51
 
     key:
-      name: zookeeper_cluster
+      name: "{{ project_name }}"

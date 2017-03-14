@@ -1,9 +1,11 @@
 ---
-
 - name: Generate deploy vars file
   hosts: localhost
   gather_facts: false
   connection: local
+
+  vars:
+    project_name: "zookeeper_firehose"
 
   vars_files:
     - vars/aws/zookeeper.yaml

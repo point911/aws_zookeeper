@@ -5,6 +5,9 @@
   gather_facts: yes
   remote_user: ubuntu
 
+  vars:
+    project_name: "zookeeper_firehose"
+
   vars_files:
     - vars/aws/zookeeper.yaml
 
@@ -20,6 +23,9 @@
     - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
   connection: ssh
   gather_facts: yes
+
+  vars:
+    project_name: "zookeeper_firehose"
 
   remote_user: ubuntu
 

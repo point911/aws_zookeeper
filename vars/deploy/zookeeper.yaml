@@ -1,2 +1,2 @@
-zookeepr_security_group: "{{ lookup('env','AWS_ZOOKEEPER_SECURITY_GROUP') if lookup('env','AWS_ZOOKEEPER_SECURITY_GROUP') != '' else 'zookeeper_cluster' }}"
+zookeepr_security_group: "{{ project_name }}"
 zookeeper_server_list: "{{ groups['security_group_'+zookeepr_security_group]|map('extract', hostvars, 'ec2_private_ip_address')|list }}"

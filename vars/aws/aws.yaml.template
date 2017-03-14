@@ -23,6 +23,7 @@ aws:
       inventory_group: "{{ group.instances.inventory_group }}"
       instance_type: "{{ group.instances.type }}"
       security_group: "{{ group.instances.security_groups }}"
+      vpc_subnet_id: "{{ group.instances.vpc_subnet_id }}"
 
 {% endfor %}
 {% endfor %}
