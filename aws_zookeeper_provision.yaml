@@ -3,6 +3,9 @@
   gather_facts: false
   connection: local
 
+  vars:
+    project_name: "zookeeper_firehose"
+
   vars_files:
     - vars/aws/zookeeper.yaml
     - vars/aws/aws.yaml

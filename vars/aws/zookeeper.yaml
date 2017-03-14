@@ -32,7 +32,7 @@ env:
     groups:
       - node_type: "{{ project_name }}"
         instances:
-          number: "{{ lookup('env','AWS_INSTANCE_NUMBER') if lookup('env','AWS_INSTANCE_NUMBER') != '' else 1 }}"
+          number: 1
           name: "{{ project_name }}"
           type: t2.medium
           # Termination by this criteris
