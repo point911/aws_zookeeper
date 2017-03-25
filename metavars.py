@@ -252,7 +252,7 @@ if __name__ == "__main__":
         class PatchedInterface(interface.__class__, ZookeeperCluster):
             pass
     else:
-        print("This type of cluster is not support yet.")
+        print("This type of cluster is not supported yet.")
         exit(1)
 
     interface.__class__ = PatchedInterface

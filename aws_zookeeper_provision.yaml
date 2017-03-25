@@ -11,6 +11,6 @@
     - vars/aws/aws.yaml
 
   tasks:
-    - include: tasks/aws/keypair.yaml
-    - include: tasks/aws/securitygroup.yaml
+#    - include: tasks/aws/keypair.yaml
+#    - include: tasks/aws/securitygroup.yaml
     - include: tasks/aws/instances.yaml

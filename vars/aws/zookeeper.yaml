@@ -39,6 +39,11 @@ env:
           inventory_group: "{{ inventory_groups.zookeeper_inventory_group }}"
           security_groups: ["{{ project_name }}"]
           vpc_subnet_id: subnet-79535f51
+          volumes:
+            - device_name: /dev/sda1
+              volume_size: 30
 
     key:
       name: "{{ project_name }}"
+
+    image: "ami-f4cc1de2" # Xenial
