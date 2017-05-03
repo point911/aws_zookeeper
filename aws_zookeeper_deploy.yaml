@@ -1,6 +1,8 @@
 - name: Wait for become yes
   hosts:
-    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
+#    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
+    - tag_Name_zookeeper_firehose1
+    - tag_Name_zookeeper_firehose2
   connection: ssh
   gather_facts: yes
   remote_user: ubuntu
@@ -20,9 +22,12 @@
 
 - name: Install zookeeper
   hosts:
-    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
+#    - tag_inventory_group_{{ inventory_groups.zookeeper_inventory_group }}
+    - tag_Name_zookeeper_firehose1
+    - tag_Name_zookeeper_firehose2
   connection: ssh
   gather_facts: yes
+  become: yes
 
   vars:
     project_name: "zookeeper_firehose"
@@ -47,4 +52,5 @@
   roles:
     - name: community/ssh
     - name: community/java
-    - name: community/zookeeper
+    - name: community/zookeeper-shipyard
+#    - name: community/kafka_manager
